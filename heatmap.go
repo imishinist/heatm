@@ -26,7 +26,7 @@ func (h *HeatMap) max() int {
 }
 
 func (h *HeatMap) Add(other *HeatMap) error {
-	if h.Columns != other.Columns || h.Rows != other.Columns {
+	if h.Columns != other.Columns || h.Rows != other.Rows {
 		return errors.New("invalid size")
 	}
 
