@@ -31,6 +31,13 @@ func (h *HeatMap) Add(other *HeatMap) error {
 	}
 
 	for y := 0; y < h.Rows; y++ {
+		// nullなら
+		if len(h.CountsInts2D[y]) == 0 {
+			h.CountsInts2D[y] = make([]int, h.Columns)
+		}
+		if len(other.CountsInts2D[y]) == 0 {
+			continue
+		}
 		for x := 0; x < h.Columns; x++ {
 			h.CountsInts2D[y][x] += other.CountsInts2D[y][x]
 		}
