@@ -1,4 +1,4 @@
-module github.com/imishinist/heatmtool
+module github.com/imishinist/heatm
 
 go 1.15
 

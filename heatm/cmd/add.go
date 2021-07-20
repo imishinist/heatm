@@ -5,8 +5,9 @@ import (
 	"log"
 	"os"
 
-	"github.com/imishinist/heatmtool"
 	"github.com/spf13/cobra"
+
+	"github.com/imishinist/heatm"
 )
 
 var (
@@ -18,14 +19,14 @@ var addCmd = &cobra.Command{
 	Use:   "add",
 	Short: "add add heatmap counts",
 	Run: func(cmd *cobra.Command, args []string) {
-		heatmaps := make([]*heatmtool.HeatMap, 0, len(addFiles))
+		heatmaps := make([]*heatm.HeatMap, 0, len(addFiles))
 		for _, file := range addFiles {
 			f, err := os.Open(file)
 			if err != nil {
 				log.Fatal(err)
 			}
 
-			var hm heatmtool.HeatMap
+			var hm heatm.HeatMap
 			if err := json.NewDecoder(f).Decode(&hm); err != nil {
 				log.Fatal(err)
 			}

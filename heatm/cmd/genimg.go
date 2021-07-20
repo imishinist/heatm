@@ -4,8 +4,9 @@ import (
 	"encoding/json"
 	"os"
 
-	"github.com/imishinist/heatmtool"
 	"github.com/spf13/cobra"
+
+	"github.com/imishinist/heatm"
 )
 
 var (
@@ -24,7 +25,7 @@ var genimgCmd = &cobra.Command{
 			return
 		}
 
-		var heatmap heatmtool.HeatMap
+		var heatmap heatm.HeatMap
 		if err := json.NewDecoder(in).Decode(&heatmap); err != nil {
 			cmd.PrintErrf("json decode error: %v", err)
 			return

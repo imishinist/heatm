@@ -8,8 +8,9 @@ import (
 	"io"
 	"os"
 
-	"github.com/imishinist/heatmtool"
 	"github.com/spf13/cobra"
+
+	"github.com/imishinist/heatm"
 )
 
 var (
@@ -27,7 +28,7 @@ var normCmd = &cobra.Command{
 			return
 		}
 
-		var heatmap heatmtool.HeatMap
+		var heatmap heatm.HeatMap
 		if err := json.NewDecoder(in).Decode(&heatmap); err != nil {
 			cmd.PrintErrf("json decode error: %v", err)
 			return
@@ -56,7 +57,7 @@ func input(file string) (*os.File, error) {
 	return f, nil
 }
 
-func output(w io.Writer, output string, hm heatmtool.HeatMap) error {
+func output(w io.Writer, output string, hm heatm.HeatMap) error {
 	if output == "json" {
 		if err := json.NewEncoder(w).Encode(hm); err != nil {
 			return fmt.Errorf("json decode error: %w", err)

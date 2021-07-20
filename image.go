@@ -1,4 +1,4 @@
-package heatmtool
+package heatm
 
 import (
 	"image"
