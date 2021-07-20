@@ -1,4 +1,4 @@
-package main
+package heatmtool
 
 import "errors"
 
@@ -11,6 +11,13 @@ type HeatMap struct {
 	MaxX         float64     `json:"maxX"`
 	MaxY         float64     `json:"maxY"`
 	CountsInts2D [][]float64 `json:"counts_ints2D"`
+}
+
+func (h *HeatMap) Img() *HeatMapImage {
+	return &HeatMapImage{
+		heatmap: *h,
+		max:     int(h.max()),
+	}
 }
 
 func (h *HeatMap) max() float64 {
@@ -44,4 +51,18 @@ func (h *HeatMap) Add(other *HeatMap) error {
 	}
 
 	return nil
+}
+
+func (h *HeatMap) Normalize() {
+	max := h.max()
+
+	for y := 0; y < h.Rows; y++ {
+		// nullならskip
+		if len(h.CountsInts2D[y]) == 0 {
+			continue
+		}
+		for x := 0; x < h.Columns; x++ {
+			h.CountsInts2D[y][x] /= max
+		}
+	}
 }

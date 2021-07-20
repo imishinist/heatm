@@ -1,11 +1,7 @@
-package main
+package heatmtool
 
 import (
-	"encoding/json"
-	"flag"
 	"fmt"
-	"log"
-	"os"
 )
 
 type strs []string
@@ -23,6 +19,7 @@ var (
 	files strs
 )
 
+/*
 func main() {
 	flag.Var(&files, "file", "")
 	flag.Parse()
@@ -54,3 +51,4 @@ func main() {
 
 	json.NewEncoder(os.Stdout).Encode(dist)
 }
+*/
